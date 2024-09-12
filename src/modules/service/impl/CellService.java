@@ -1,6 +1,8 @@
-package modules.service;
+package modules.service.impl;
 
-public class CellService {
+import modules.service.ICellService;
+
+public class CellService implements ICellService {
   public int updateCellState(int liveNeighbors, int currentState) {
     if ((liveNeighbors > 3 || liveNeighbors < 2) && currentState == 1) {
       // Cell dies

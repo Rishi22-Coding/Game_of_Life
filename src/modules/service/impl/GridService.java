@@ -1,10 +1,14 @@
-package modules.service;
+package modules.service.impl;
 
-public class GridService {
-  private final NeighborService neighborService;
-  private final CellService cellService;
+import modules.service.ICellService;
+import modules.service.IGridService;
+import modules.service.INeighborService;
 
-  public GridService(NeighborService neighborService, CellService cellService) {
+public class GridService implements IGridService {
+  private final INeighborService neighborService;
+  private final ICellService cellService;
+
+  public GridService(INeighborService neighborService, ICellService cellService) {
     this.neighborService = neighborService;
     this.cellService = cellService;
   }

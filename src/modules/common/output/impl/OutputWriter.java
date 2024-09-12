@@ -1,6 +1,8 @@
-package modules.common.output;
+package modules.common.output.impl;
 
-public class OutputWriter {
+import modules.common.output.IOutputWriter;
+
+public class OutputWriter implements IOutputWriter {
   public void printGrid(int[][] grid) {
     for (int[] row : grid) {
       for (int cell : row) {

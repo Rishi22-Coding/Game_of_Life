@@ -1,17 +1,21 @@
-import modules.common.output.OutputWriter;
+import modules.common.output.IOutputWriter;
+import modules.common.output.impl.OutputWriter;
 import modules.controller.GameTestController;
-import modules.service.GridService;
-import modules.service.CellService;
-import modules.service.NeighborService;
+import modules.service.ICellService;
+import modules.service.IGridService;
+import modules.service.INeighborService;
+import modules.service.impl.GridService;
+import modules.service.impl.CellService;
+import modules.service.impl.NeighborService;
 
 public class Main {
   public static void main(String[] args) {
     System.out.println("Welcome to the Game of Life!");
 
-    OutputWriter outputWriter = new OutputWriter();
-    NeighborService neighborService = new NeighborService();
-    CellService cellService = new CellService();
-    GridService gridService = new GridService(neighborService, cellService);
+    IOutputWriter outputWriter = new OutputWriter();
+    INeighborService neighborService = new NeighborService();
+    ICellService cellService = new CellService();
+    IGridService gridService = new GridService(neighborService, cellService);
 
     GameTestController gameController = new GameTestController(outputWriter, gridService);
     gameController.runAllTests();

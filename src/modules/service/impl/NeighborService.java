@@ -1,6 +1,8 @@
-package modules.service;
+package modules.service.impl;
 
-public class NeighborService {
+import modules.service.INeighborService;
+
+public class NeighborService implements INeighborService {
   // Directions for 8 possible neighbors
   private static final int[] dRow = {0, 0, -1, 1, -1, 1, -1, 1};
   private static final int[] dCol = {1, -1, 0, 0, 1, -1, -1, 1};
