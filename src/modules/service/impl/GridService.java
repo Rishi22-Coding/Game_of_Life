@@ -7,28 +7,42 @@ import modules.service.INeighborService;
 public class GridService implements IGridService {
   private final INeighborService neighborService;
   private final ICellService cellService;
+  private int[][] grid;
 
   public GridService(INeighborService neighborService, ICellService cellService) {
     this.neighborService = neighborService;
     this.cellService = cellService;
   }
 
+  public int[][] getGrid() {
+    return grid;
+  }
+
+  public void setGrid(int[][] newGrid) {
+    this.grid = newGrid;
+  }
+
   public void updateGrid(int[][] grid) {
     int n = grid.length;
     int m = grid[0].length;
 
-    // First pass: mark cells for next state
+    // First pass: mark cells for the next state
     for (int row = 0; row < n; row++) {
       for (int col = 0; col < m; col++) {
         int liveNeighbors = neighborService.countLiveNeighbors(grid, row, col);
-        grid[row][col] = cellService.updateCellState(liveNeighbors, grid[row][col]);
+
+        int currentState = cellService.getCellState(grid, row, col);
+        int newState = cellService.updateCellState(liveNeighbors, currentState);
+
+        cellService.setCellState(grid, row, col, newState);
       }
     }
 
-    // Second pass: finalize cell states
+    // Finalize the cell states (if needed)
     for (int row = 0; row < n; row++) {
       for (int col = 0; col < m; col++) {
-        grid[row][col] = cellService.finalizeCellState(grid[row][col]);
+        int finalizedState = cellService.finalizeCellState(grid[row][col]);
+        cellService.setCellState(grid, row, col, finalizedState);
       }
     }
   }

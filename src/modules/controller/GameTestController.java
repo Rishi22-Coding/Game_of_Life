@@ -1,6 +1,6 @@
 package modules.controller;
 
-import modules.common.output.IOutputWriter;
+import modules.common.IOutputWriter;
 import modules.controller.abs.AbstractGameTestController;
 import modules.service.IGridService;
 
@@ -65,5 +65,7 @@ public class GameTestController extends AbstractGameTestController {
                         {0, 0, 0, 1, 0}
                 }
         );
+
+        System.out.println("Game Over!");
     }
 }
