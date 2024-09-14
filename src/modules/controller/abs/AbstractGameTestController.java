@@ -13,20 +13,28 @@ public abstract class AbstractGameTestController {
     }
 
     // Non-static common method to run pattern tests
-    protected void runPatternTest(String testName, int[][] grid, int[][] expectedGrid) {
+    protected void runPatternTest(String testName, int[][] initialGrid, int[][] expectedGrid) {
         System.out.println("\nRunning test: " + testName);
+
+        // Set the initial grid
+        gridService.setGrid(initialGrid);
+
+        // Print the initial grid
         System.out.println("Initial Grid:");
-        outputWriter.printGrid(grid);
+        outputWriter.printGrid(initialGrid);
 
         // Update the grid using GridService
-        gridService.updateGrid(grid);
+        gridService.updateGrid(initialGrid);
+
+        // Fetch the updated grid from GridService
+        int[][] updatedGrid = gridService.getGrid();
 
         // Check the result
         System.out.println("Grid after 1 tick:");
-        outputWriter.printGrid(grid);
+        outputWriter.printGrid(updatedGrid);
 
         // Validate the output
-        if (gridService.validateGrid(grid, expectedGrid)) {
+        if (gridService.validateGrid(updatedGrid, expectedGrid)) {
             System.out.println(testName + " PASSED");
         } else {
             System.out.println(testName + " FAILED");

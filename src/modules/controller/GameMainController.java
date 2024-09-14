@@ -18,16 +18,22 @@ public class GameMainController {
     public void startGame() {
         int[][] grid = inputReader.readGrid();
 
+        // Set grid
+        gridService.setGrid(grid);
+
         // initial
         System.out.println("Initial Grid:");
         outputWriter.printGrid(grid);
 
         // logic
         gridService.updateGrid(grid);
+
+        // print
         System.out.println("Grid after 1 tick:");
         outputWriter.printGrid(grid);
 
         // end
         System.out.println("Game Over!");
     }
+
 }
