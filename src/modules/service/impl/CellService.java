@@ -3,6 +3,14 @@ package modules.service.impl;
 import modules.service.ICellService;
 
 public class CellService implements ICellService {
+  public int getCellState(int[][] grid, int row, int col) {
+    return grid[row][col];
+  }
+
+  public void setCellState(int[][] grid, int row, int col, int state) {
+    grid[row][col] = state;
+  }
+
   public int updateCellState(int liveNeighbors, int currentState) {
     if ((liveNeighbors > 3 || liveNeighbors < 2) && currentState == 1) {
       // Cell dies

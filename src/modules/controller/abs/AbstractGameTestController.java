@@ -1,6 +1,6 @@
 package modules.controller.abs;
 
-import modules.common.output.IOutputWriter;
+import modules.common.IOutputWriter;
 import modules.service.IGridService;
 
 public abstract class AbstractGameTestController {
